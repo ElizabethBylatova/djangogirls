@@ -1,9 +1,6 @@
 *.рус
 *~
 __pycache__
-/.idea
-/blog/migrations
-venv
 db.sqlite3
 /static
 .DS_Store
