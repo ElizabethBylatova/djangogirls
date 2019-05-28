@@ -7,6 +7,19 @@ from blog.forms import PostForm
 from blog.models import Post
 
 
+class PostList(TemplateView):
+    def post(self, request, **kwargs):
+        context = super(PostList, self).get_context_data(**kwargs)
+        post = Post.objects.post = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+        context['post'] = post
+        return render(request, 'blog/post_list.html', context)
+
+
+#def post_list(request):
+#    post = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+#    return render(request, 'blog/post_list.html', {'post': posts})
+
+
 class PostDetail(TemplateView):
     def post(self, request, **kwargs):
         context = super(PostDetail, self).get_context_data(**kwargs)
