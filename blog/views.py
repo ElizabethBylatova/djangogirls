@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.utils import timezone
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DeleteView
 
 from blog.forms import PostForm
 from blog.models import Post
@@ -15,7 +16,7 @@ class PostList(TemplateView):
         return render(request, 'blog/post_list.html', context)
 
 
-#def post_list(request):
+# def post_list(request):
 #    post = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 #    return render(request, 'blog/post_list.html', {'post': posts})
 
@@ -102,4 +103,9 @@ class DetailView(TemplateView):
     #       form = PostForm(instance=post)
     # return render(request, 'blog/post_edit.html', context={'form': form})
 
-# Create your views here.
+
+class PostDeleteView(DeleteView):
+    model = Post
+    success_url = reverse_lazy('post-delete')
+
+# Create your views here.e
