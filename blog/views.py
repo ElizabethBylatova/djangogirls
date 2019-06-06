@@ -11,10 +11,10 @@ from blog.models import Post
 class PostList(TemplateView):
     template_name = 'blog/post_list.html'
 
-    def post(self, request, **kwargs):
+    def get(self, request, *args, **kwargs):
         context = super(PostList, self).get_context_data(**kwargs)
-        post = Post.objects.post = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-        context['post'] = post
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+        context['posts'] = posts
         return render(request, self.template_name, context)
 
 
@@ -26,7 +26,7 @@ class PostList(TemplateView):
 class PostDetail(TemplateView):
     template_name = 'blog/post_detail.html'
 
-    def post(self, request, **kwargs):
+    def get(self, request, *args, **kwargs):
         context = super(PostDetail, self).get_context_data(**kwargs)
         pk = kwargs.get('pk')
         post = get_object_or_404(Post, pk=pk)
