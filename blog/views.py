@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views.generic import TemplateView, DeleteView
 
@@ -110,6 +109,6 @@ class DetailView(TemplateView):
 
 class PostDeleteView(DeleteView):
     model = Post
-    success_url = reverse_lazy('post-delete')
+    success_url = '/'
 
 # Create your views here.e
