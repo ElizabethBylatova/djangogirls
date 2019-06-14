@@ -6,8 +6,12 @@
             <div class="date">
                 {{ post.published_date }}
             </div>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <a class="btn btn-primary" href="{% url 'post-delete' pk=post.pk %}">Удалить</a>
+            <div style="display: flex; justify-content: center">
+                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                <div>
+                <a class="btn btn-primary" href="{% url 'post-delete' pk=post.pk %}">Удалить</a>
+                </div>
+            </div>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {% endfor %}
