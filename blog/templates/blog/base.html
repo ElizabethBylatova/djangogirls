@@ -15,9 +15,9 @@
         <p class="top-menu">Привет! {{ user.username }} <small>(<a href="{% url 'logout' %}">Выход</a>)</small</p>
     {% else %}
          <a href="{% url 'login' %}" class="top-menu"><i class="fas fa-unlock-alt"></i></a>
-         <a href="{% url 'register' %}"><i class="fas fa-sign-in-alt"></i>Регистрация</a>
     {% endif %}
     <h1><a href="/">Django Girls Blog</a></h1>
+    <a href="{% url 'register' %}"><i class="fas fa-sign-in-alt"></i>Регистрация</a>
 </div>
 <div class="content container">
     <div class="row">

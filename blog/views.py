@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import DeleteView
 from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 from blog.forms import PostForm
@@ -27,7 +28,9 @@ class PostList(TemplateView):
 #    return render(request, 'blog/post_list.html', {'post': posts})
 
 
-class PostDetail(TemplateView):
+class PostDetail(LoginRequiredMixin,TemplateView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     template_name = 'blog/post_detail.html'
 
     def get(self, request, *args, **kwargs):
@@ -44,7 +47,9 @@ class PostDetail(TemplateView):
 #
 
 
-class PostNew(TemplateView):
+class PostNew(LoginRequiredMixin,TemplateView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     form_class = PostForm
     initial = {'key': 'value'}
     template_name = 'blog/post_edit.html'
@@ -77,7 +82,9 @@ class PostNew(TemplateView):
     # return render(request, 'blog/post_edit.html', context={'form': form})
 
 
-class PostEdit(TemplateView):
+class PostEdit(LoginRequiredMixin, TemplateView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     form_class = PostForm
     initial = {'key': 'value'}
     template_name = 'blog/post_edit.html'
@@ -150,7 +157,9 @@ class RegisterView(TemplateView):
         return render(request, self.template_name)
 
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     model = Post
     success_url = '/'
 

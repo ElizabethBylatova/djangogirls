@@ -8,11 +8,11 @@ body{
 
 h1 a {
     color: #4E2A8A;
-    font-family: 'Lobster';
+    font-family: 'Times New Roman';
 }
 
 .page-header {
-    background-color: #ff9400;
+    background-color: #8c00ff;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -28,7 +28,7 @@ h1 a {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Times New Roman', cursive;
 }
 
 .date {
@@ -46,7 +46,7 @@ h1, h2, h3, h4 {
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #ffffff;
     float: right;
-    font-size: 26pt;
+    font-size: 24pt;
     margin-right: 20px;
 }
 
