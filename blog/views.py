@@ -18,7 +18,7 @@ class PostList(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = super(PostList, self).get_context_data(**kwargs)
-        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
         context['posts'] = posts
         return render(request, self.template_name, context)
 
