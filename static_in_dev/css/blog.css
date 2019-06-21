@@ -1,5 +1,5 @@
 h1 a {
-    color: #4E2A8A;
+    color: #000000;
 }
 
 body{
@@ -7,12 +7,12 @@ body{
 }
 
 h1 a {
-    color: #4E2A8A;
+    color: #000000;
     font-family: 'Times New Roman';
 }
 
 .page-header {
-    background-color: #8c00ff;
+    background-color: #21b243;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }

@@ -1,4 +1,3 @@
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.shortcuts import render
@@ -13,7 +12,8 @@ from blog.forms import PostForm
 from blog.models import Post
 
 
-class PostList(TemplateView):
+class PostList(LoginRequiredMixin, TemplateView):
+    redirect_field_name = 'registration/register.html'
     template_name = 'blog/post_list.html'
 
     def get(self, request, *args, **kwargs):
@@ -28,9 +28,8 @@ class PostList(TemplateView):
 #    return render(request, 'blog/post_list.html', {'post': posts})
 
 
-class PostDetail(LoginRequiredMixin,TemplateView):
-    login_url = '/login/'
-    redirect_field_name = 'redirect_to'
+class PostDetail(LoginRequiredMixin, TemplateView):
+    redirect_field_name = 'registration/register.html'
     template_name = 'blog/post_detail.html'
 
     def get(self, request, *args, **kwargs):
@@ -48,8 +47,7 @@ class PostDetail(LoginRequiredMixin,TemplateView):
 
 
 class PostNew(LoginRequiredMixin,TemplateView):
-    login_url = '/login/'
-    redirect_field_name = 'redirect_to'
+    redirect_field_name = 'registration/register.html'
     form_class = PostForm
     initial = {'key': 'value'}
     template_name = 'blog/post_edit.html'
@@ -83,8 +81,7 @@ class PostNew(LoginRequiredMixin,TemplateView):
 
 
 class PostEdit(LoginRequiredMixin, TemplateView):
-    login_url = '/login/'
-    redirect_field_name = 'redirect_to'
+    redirect_field_name = 'registration/register.html'
     form_class = PostForm
     initial = {'key': 'value'}
     template_name = 'blog/post_edit.html'
@@ -119,23 +116,6 @@ class PostEdit(LoginRequiredMixin, TemplateView):
     # return render(request, 'blog/post_edit.html', context={'form': form})
 
 
-class LoginView(TemplateView):
-    template_name = "registration/login.html"
-
-    def dispatch(self, request, *args, **kwargs):
-        context = {}
-        if request.method == 'POST':
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("/")
-            else:
-                context['error'] = "Логин или пароль неправильные"
-        return render(request, self.template_name, context)
-
-
 class ProfilePage(TemplateView):
     template_name = 'registration/profile.html'
 
@@ -158,8 +138,7 @@ class RegisterView(TemplateView):
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
-    login_url = '/login/'
-    redirect_field_name = 'redirect_to'
+    redirect_field_name = 'registration/register.html'
     model = Post
     success_url = '/'
 
